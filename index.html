@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Giga site de révision Maths S2 pour BUT R&T : primitives, intégrales, IPP, changements de variables et exercices.">
+  <title>Giga Révision Maths S2 - Primitives & Intégrales</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#accueil" aria-label="Accueil">
+      <span class="brand-mark">S2</span>
+      <span>Giga Révision Maths</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#cours">Cours</a>
+      <a href="#formules">Formules</a>
+      <a href="#methodes">Méthodes</a>
+      <a href="#exercices">Exercices</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#flashcards">Flashcards</a>
+      <a href="#fiche">Fiche examen</a>
+      <a href="#controle">Mode contrôle</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-label="Ouvrir le menu">☰</button>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero section">
+      <div class="hero-copy">
+        <p class="tag">BUT R&T - Maths S2</p>
+        <h1>Giga Révision Maths S2 – Primitives & Intégrales</h1>
+        <p class="lead">
+          Un site de révision rapide, complet et interactif pour maîtriser les <strong>primitives</strong>,
+          les <strong>intégrales définies</strong>, les <strong>fractions rationnelles</strong>, l'<strong>IPP</strong> et les
+          <strong>changements de variables</strong>.
+        </p>
+        <div class="quick-actions" aria-label="Acces rapide">
+          <a class="btn primary" href="#cours">Cours</a>
+          <a class="btn" href="#formules">Formules</a>
+          <a class="btn" href="#methodes">Méthodes</a>
+          <a class="btn" href="#exercices">Exercices</a>
+          <a class="btn" href="#quiz">Quiz</a>
+          <a class="btn" href="#fiche">Fiches examen</a>
+        </div>
+      </div>
+      <aside class="revision-panel">
+        <div class="panel-head">
+          <span>Progression locale</span>
+          <strong id="globalProgressLabel">0%</strong>
+        </div>
+        <div class="progress-track" aria-label="Progression de revision">
+          <span id="globalProgressBar"></span>
+        </div>
+        <ul class="mastery-list">
+          <li><strong>Primitives directes</strong><span>formules de base</span></li>
+          <li><strong>Fonctions composées</strong><span>reconnaître \(u'\)</span></li>
+          <li><strong>Fractions rationnelles</strong><span>\(u'/u\), éléments simples</span></li>
+          <li><strong>Intégrales définies</strong><span>\(F(b)-F(a)\), aire, signal</span></li>
+          <li><strong>IPP & CV</strong><span>méthodes de fin de chapitre</span></li>
+        </ul>
+        <button id="resetProgress" class="btn danger" type="button">Réinitialiser la progression</button>
+      </aside>
+    </section>
+
+    <section id="cours" class="section">
+      <div class="section-title">
+        <p>Partie V du cours</p>
+        <h2>Cours progressif : primitives et intégrales</h2>
+      </div>
+      <div class="course-grid">
+        <article class="lesson-card">
+          <h3>1. Définition d’une primitive</h3>
+          <p>Une primitive de \(f\) est une fonction \(F\) dont la dérivée redonne \(f\).</p>
+          <div class="formula">\[F'(x)=f(x)\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>Si \(F(x)=x^3\), alors \(F'(x)=3x^2\). Donc une primitive de \(3x^2\) est \(x^3\).</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> oublier que l’on vérifie une primitive en la dérivant.</p>
+        </article>
+        <article class="lesson-card">
+          <h3>2. Pourquoi ajouter \(+C\) ?</h3>
+          <p>Deux fonctions qui ne diffèrent que d’une constante ont la même dérivée. Il existe donc une infinité de primitives.</p>
+          <div class="formula">\[\int f(x)\,dx=F(x)+C\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>\(\int 2x\,dx=x^2+C\), car \((x^2+7)'=2x\) et \((x^2-3)'=2x\).</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> oublier \(+C\) dans une primitive non définie.</p>
+        </article>
+        <article class="lesson-card">
+          <h3>3. Primitive ou intégrale définie ?</h3>
+          <p>Une primitive est une fonction. Une intégrale définie est un nombre obtenu entre deux bornes.</p>
+          <div class="formula">\[\int_a^b f(x)\,dx=F(b)-F(a)\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>\(\int_0^2 3x^2\,dx=[x^3]_0^2=8\).</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> ajouter \(+C\) dans un résultat d’intégrale définie.</p>
+        </article>
+        <article class="lesson-card">
+          <h3>4. Aire sous la courbe</h3>
+          <p>Si \(f(x)\ge 0\) sur \([a,b]\), l’intégrale représente l’aire située sous la courbe.</p>
+          <div class="formula">\[\mathcal A=\int_a^b f(x)\,dx\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>\(\int_0^3 2\,dx=6\), c’est l’aire d’un rectangle de largeur 3 et hauteur 2.</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> confondre aire géométrique positive et intégrale signée si la courbe passe sous l’axe.</p>
+        </article>
+        <article class="lesson-card">
+          <h3>5. Lien avec le signal</h3>
+          <p>En R&T, une intégrale sert à calculer une moyenne, une aire ou une énergie de signal.</p>
+          <div class="formula">\[moyenne=\frac{1}{T}\int_0^T s(t)\,dt,\qquad énergie=\int_a^b |s(t)|^2\,dt\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>Pour un signal constant \(s(t)=5\), la moyenne sur \([0,T]\) vaut \(\frac{1}{T}\int_0^T 5\,dt=5\).</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> oublier le facteur \(\frac{1}{T}\) dans une moyenne.</p>
+        </article>
+        <article class="lesson-card">
+          <h3>6. Continuité et existence</h3>
+          <p>Dans le cours, on travaille sur des fonctions continues sur un intervalle : elles admettent des primitives.</p>
+          <div class="formula">\[f \text{ continue sur } I \Rightarrow f \text{ admet des primitives sur } I\]</div>
+          <div class="example"><strong>Exemple corrigé</strong><p>\(\frac{1}{x}\) admet des primitives sur \(]0,+\infty[\) ou \(]-\infty,0[\), mais pas sur un intervalle contenant 0.</p></div>
+          <p class="warning"><strong>Erreur fréquente :</strong> écrire \(\ln(x)\) sans vérifier le domaine.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="formules" class="section alt">
+      <div class="section-title">
+        <p>Table interactive</p>
+        <h2>Table des primitives</h2>
+      </div>
+      <div class="toolbar">
+        <input id="formulaSearch" type="search" placeholder="Rechercher : exponentielle, cos, u'/u...">
+        <div id="formulaFilters" class="filters" aria-label="Filtres de formules"></div>
+      </div>
+      <div id="formulaTable" class="formula-table"></div>
+    </section>
+
+    <section id="methodes" class="section">
+      <div class="section-title">
+        <p>Reconnaître la bonne méthode</p>
+        <h2>Fiches méthodes détaillées</h2>
+      </div>
+      <div class="method-list">
+        <article class="method-card">
+          <h3>A. Primitive directe</h3>
+          <p>À utiliser quand l’expression correspond directement à une formule de la table.</p>
+          <ol><li>Identifier la forme.</li><li>Appliquer la formule.</li><li>Ajouter \(+C\).</li></ol>
+          <div class="formula">\[\int (3x^2+2)\,dx=x^3+2x+C\]</div>
+        </article>
+        <article class="method-card">
+          <h3>B. Fonction composée</h3>
+          <p>On cherche une forme \(u'(x)f(u(x))\).</p>
+          <ol><li>Identifier \(u(x)\).</li><li>Vérifier que \(u'(x)\) est présent.</li><li>Appliquer la formule.</li></ol>
+          <div class="formula">\[\int 2x e^{x^2}\,dx=e^{x^2}+C\]</div>
+        </article>
+        <article class="method-card">
+          <h3>C. Fractions rationnelles</h3>
+          <p>Commencer par \(u'/u\). Sinon, décomposer en éléments simples.</p>
+          <div class="formula">\[\frac{1}{(x+1)(x+2)}=\frac{1}{x+1}-\frac{1}{x+2}\]</div>
+          <p>Donc \(\int \frac{1}{(x+1)(x+2)}dx=\ln|x+1|-\ln|x+2|+C\).</p>
+        </article>
+        <article class="method-card">
+          <h3>D. Linéarisation trigonométrique</h3>
+          <p>On linéarise pour transformer une puissance trigonométrique en somme plus simple à intégrer.</p>
+          <div class="formula">\[\sin^2(x)=\frac{1-\cos(2x)}{2},\quad \cos^2(x)=\frac{1+\cos(2x)}{2}\]</div>
+          <div class="formula">\[\cos(a)\cos(b)=\frac{1}{2}[\cos(a+b)+\cos(a-b)]\]</div>
+          <p>Exemple : \(\int \sin^2 x\,dx=\frac{x}{2}-\frac{\sin(2x)}{4}+C\).</p>
+        </article>
+        <article class="method-card">
+          <h3>E. Intégration par parties</h3>
+          <p>Utile pour \(x e^x\), \(x\cos x\), \(\ln x\). On choisit \(u\) à dériver pour simplifier.</p>
+          <div class="formula">\[\int u v'=uv-\int u'v\]</div>
+          <p>Exemple : \(\int x e^x dx=xe^x-\int e^x dx=e^x(x-1)+C\).</p>
+        </article>
+        <article class="method-card">
+          <h3>F. Changement de variable</h3>
+          <p>On remplace une expression par une variable plus simple et on transforme aussi les bornes.</p>
+          <div class="formula">\[\int_a^b f(x)\,dx=\int_\alpha^\beta f(u(t))u'(t)\,dt\]</div>
+          <p>Exemple : avec \(x=t^2\), \(\int_0^4 e^{\sqrt{x}}dx=\int_0^2 e^t 2t\,dt\).</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="exercices" class="section alt">
+      <div class="section-title">
+        <p>Banque locale sauvegardée</p>
+        <h2>Exercices par difficulté</h2>
+      </div>
+      <div class="exercise-dashboard">
+        <div>
+          <strong id="exerciseDone">0</strong>
+          <span>réussis</span>
+        </div>
+        <div>
+          <strong id="exerciseRedo">0</strong>
+          <span>à refaire</span>
+        </div>
+        <div>
+          <strong id="exerciseTotal">0</strong>
+          <span>exercices</span>
+        </div>
+      </div>
+      <div class="toolbar">
+        <select id="exerciseLevel"></select>
+        <input id="exerciseSearch" type="search" placeholder="Filtrer les exercices...">
+      </div>
+      <div id="exerciseList" class="exercise-list"></div>
+    </section>
+
+    <section id="quiz" class="section">
+      <div class="section-title">
+        <p>QCM instantané</p>
+        <h2>Quiz interactif</h2>
+      </div>
+      <div class="quiz-shell">
+        <div class="quiz-controls">
+          <select id="quizCategory"></select>
+          <button id="startQuiz" class="btn primary" type="button">Nouvelle question</button>
+          <label class="switch"><input id="timerToggle" type="checkbox"> Timer 20s</label>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-meta"><span id="quizScore">Score : 0/0</span><span id="quizTimer"></span></div>
+          <h3 id="quizQuestion">Clique sur “Nouvelle question”.</h3>
+          <div id="quizAnswers" class="answer-grid"></div>
+          <p id="quizFeedback" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flashcards" class="section alt">
+      <div class="section-title">
+        <p>Révision active</p>
+        <h2>Flashcards</h2>
+      </div>
+      <div class="flash-controls">
+        <button id="shuffleCards" class="btn" type="button">Mélanger</button>
+        <button id="formulaMode" class="btn active" type="button">Formules uniquement</button>
+        <button id="quickMode" class="btn" type="button">Exercices rapides</button>
+      </div>
+      <button id="flashcard" class="flashcard" type="button" aria-label="Retourner la flashcard">
+        <span id="flashFace">Clique pour retourner la carte.</span>
+      </button>
+      <div class="flash-footer">
+        <button id="prevCard" class="btn" type="button">Précédente</button>
+        <span id="cardCounter">0/0</span>
+        <button id="nextCard" class="btn primary" type="button">Suivante</button>
+      </div>
+    </section>
+
+    <section id="fiche" class="section">
+      <div class="section-title">
+        <p>À imprimer avant le contrôle</p>
+        <h2>Fiche examen ultra synthèse</h2>
+      </div>
+      <div class="exam-sheet">
+        <div>
+          <h3>Formules à connaître</h3>
+          <ul>
+            <li>\(\int x^n dx=\frac{x^{n+1}}{n+1}+C\), \(n\ne -1\)</li>
+            <li>\(\int \frac{1}{x}dx=\ln|x|+C\)</li>
+            <li>\(\int e^{ax+b}dx=\frac1a e^{ax+b}+C\)</li>
+            <li>\(\int \cos(ax)dx=\frac1a\sin(ax)+C\)</li>
+            <li>\(\int \sin(ax)dx=-\frac1a\cos(ax)+C\)</li>
+            <li>\(\int_a^b f(x)dx=F(b)-F(a)\)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Ordre de résolution conseillé</h3>
+          <ol>
+            <li>Chercher une formule directe.</li>
+            <li>Chercher une composée \(u'f(u)\).</li>
+            <li>Chercher \(u'/u\).</li>
+            <li>Chercher une linéarisation.</li>
+            <li>Chercher une IPP.</li>
+            <li>Chercher un changement de variable.</li>
+            <li>Décomposer si fraction rationnelle.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Erreurs fréquentes</h3>
+          <ul>
+            <li>Oublier \(+C\) pour une primitive.</li>
+            <li>Mettre \(+C\) dans une intégrale définie.</li>
+            <li>Oublier le facteur \(\frac1a\).</li>
+            <li>Utiliser \(\ln(x)\) sans valeur absolue quand nécessaire.</li>
+            <li>Ne pas changer les bornes dans un CV.</li>
+          </ul>
+        </div>
+      </div>
+      <button class="btn primary print-btn" type="button" onclick="window.print()">Imprimer la fiche</button>
+    </section>
+
+    <section id="controle" class="section alt">
+      <div class="section-title">
+        <p>Simulation 30 minutes</p>
+        <h2>Mode contrôle</h2>
+      </div>
+      <div class="control-panel">
+        <div class="control-top">
+          <button id="startExam" class="btn primary" type="button">Générer 10 exercices</button>
+          <button id="submitExam" class="btn success" type="button">Valider le contrôle</button>
+          <strong id="examClock">30:00</strong>
+        </div>
+        <div id="examList" class="exam-list"></div>
+        <div id="examResult" class="result-box"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Site de révision généré pour BUT R&T - Maths S2. Les contenus ciblent la partie V du cours et les exercices TD liés.</p>
+  </footer>
+</body>
+</html>
